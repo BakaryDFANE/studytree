@@ -41,7 +41,7 @@ function afficherArbre() {
 // CRÉER UN NŒUD
 // ------------------------------------------------------------
 
-function creerNoeud(branche) {
+function creerNoeud(branche, profondeur = 0) {
 
     const wrapper = document.createElement("div");
 
@@ -56,6 +56,12 @@ function creerNoeud(branche) {
     const card = document.createElement("div");
 
     card.className = "node-card";
+
+    const sizeRatio = Math.max(0.7, 1 - profondeur * 0.12);
+    card.style.transform = `scale(${sizeRatio})`;
+    card.style.transformOrigin = "center bottom";
+    card.style.minWidth = `${Math.max(120, 180 - profondeur * 14)}px`;
+    card.style.padding = `${Math.max(12, 18 - profondeur * 2)}px 12px`;
 
 
     const icon = document.createElement("div");
@@ -73,6 +79,10 @@ function creerNoeud(branche) {
     name.className = "node-name";
 
     name.textContent = branche.nom;
+
+    if (profondeur > 0) {
+        name.style.fontSize = `${Math.max(11, 15 - profondeur * 0.8)}px`;
+    }
 
 
     card.appendChild(icon);
@@ -105,7 +115,7 @@ function creerNoeud(branche) {
 
         branche.enfants.forEach(function(enfant) {
 
-            const enfantNode = creerNoeud(enfant);
+            const enfantNode = creerNoeud(enfant, profondeur + 1);
 
             children.appendChild(enfantNode);
 
