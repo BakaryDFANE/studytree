@@ -1,0 +1,155 @@
+<!-- ============================================================
+     templates/index.html
+     ============================================================ -->
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Tree</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <div>
+            <h1>🌳 Study Tree</h1>
+            <p>Organise tes études comme un arbre.</p>
+        </div>
+
+        <button id="add-root-button">
+            + Ajouter une branche
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <section class="tree-container">
+
+            <div id="tree"></div>
+
+        </section>
+
+
+        <aside id="side-panel" class="side-panel">
+
+            <div class="panel-header">
+
+                <h2 id="panel-title">
+                    Sélectionne une branche
+                </h2>
+
+                <button id="close-panel">
+                    ×
+                </button>
+
+            </div>
+
+            <div id="panel-content">
+
+                <p>
+                    Clique sur une branche pour voir son contenu.
+                </p>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <div id="modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button id="close-modal" class="close-button">
+                ×
+            </button>
+
+            <h2 id="modal-title">
+                Ajouter une branche
+            </h2>
+
+            <input
+                id="branch-name"
+                type="text"
+                placeholder="Nom de la branche"
+            >
+
+            <button id="confirm-branch">
+                Ajouter
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="document-modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button id="close-document-modal" class="close-button">
+                ×
+            </button>
+
+            <h2>
+                Ajouter un document
+            </h2>
+
+            <input
+                id="document-name"
+                type="text"
+                placeholder="Nom du document"
+            >
+
+            <select id="document-source" style="width: 100%; margin-bottom: 15px; padding: 12px; border-radius: 10px; background: #0f172a; color: white; border: 1px solid #475569;">
+                <option value="local">Fichier local</option>
+                <option value="drive">Google Drive</option>
+                <option value="link">Lien externe</option>
+            </select>
+
+            <input
+                id="document-url"
+                type="url"
+                placeholder="https://..."
+                style="display: none;"
+            >
+
+            <input
+                id="document-file"
+                type="file"
+                style="margin-bottom: 15px; width: 100%; color: white;"
+            >
+
+            <button id="confirm-document">
+                Ajouter
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+</body>
+
+</html>

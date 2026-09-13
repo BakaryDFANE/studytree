@@ -1,0 +1,375 @@
+/* ============================================================
+   static/style.css
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #111827 45%, #1e293b 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+}
+
+
+/* ------------------------------------------------------------
+   BARRE DU HAUT
+   ------------------------------------------------------------ */
+
+.topbar {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 35px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.topbar h1 {
+    font-size: clamp(24px, 2vw, 32px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.topbar p {
+    color: #94a3b8;
+    margin-top: 6px;
+    font-size: 0.96rem;
+}
+
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 11px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+}
+
+
+/* ------------------------------------------------------------
+   CONTENEUR
+   ------------------------------------------------------------ */
+
+main {
+    display: flex;
+    min-height: calc(100vh - 90px);
+}
+
+.tree-container {
+    flex: 1;
+    padding: 50px 30px 70px;
+    overflow: auto;
+    background: radial-gradient(circle at top, rgba(96, 165, 250, 0.08), transparent 45%);
+}
+
+
+/* ------------------------------------------------------------
+   ARBRE
+   ------------------------------------------------------------ */
+
+#tree {
+    display: flex;
+    justify-content: center;
+    min-width: max-content;
+}
+
+.tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tree-children {
+    display: flex;
+
+    gap: 40px;
+
+    margin-top: 45px;
+
+    position: relative;
+}
+
+.tree-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+}
+
+.node-card {
+    min-width: 170px;
+    padding: 18px 16px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.96));
+    border: 1px solid rgba(96, 165, 250, 0.28);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 12px 25px rgba(15, 23, 42, 0.18);
+}
+
+.node-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(96, 165, 250, 0.8);
+    box-shadow: 0 18px 30px rgba(59, 130, 246, 0.18);
+}
+
+.node-icon {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.node-name {
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+
+/* ------------------------------------------------------------
+   LIGNES DE L'ARBRE
+   ------------------------------------------------------------ */
+
+.tree-children::before {
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.8), transparent);
+}
+
+.tree-node::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 25px;
+    background: rgba(96, 165, 250, 0.75);
+    top: -25px;
+    left: 50%;
+}
+
+
+/* ------------------------------------------------------------
+   PANNEAU
+   ------------------------------------------------------------ */
+
+.side-panel {
+    width: min(360px, 100%);
+    background: rgba(15, 23, 42, 0.92);
+    border-left: 1px solid rgba(148, 163, 184, 0.18);
+    padding: 25px 20px;
+    display: none;
+    box-shadow: -10px 0 30px rgba(15, 23, 42, 0.18);
+}
+
+.side-panel.active {
+    display: block;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    gap: 12px;
+}
+
+.panel-header h2 {
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+#close-panel {
+    background: transparent;
+    font-size: 25px;
+    padding: 3px 8px;
+    box-shadow: none;
+}
+
+
+/* ------------------------------------------------------------
+   DOCUMENTS
+   ------------------------------------------------------------ */
+
+.document {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 12px;
+}
+
+.document a {
+    color: #7dd3fc;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.document a:hover {
+    text-decoration: underline;
+}
+
+.document small {
+    color: #94a3b8;
+}
+
+.document button {
+    background: rgba(239, 68, 68, 0.14);
+    color: #fecaca;
+    min-width: 44px;
+    padding: 8px 10px;
+    box-shadow: none;
+}
+
+
+/* ------------------------------------------------------------
+   ACTIONS
+   ------------------------------------------------------------ */
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.actions button {
+    width: 100%;
+}
+
+
+/* ------------------------------------------------------------
+   MODAL
+   ------------------------------------------------------------ */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: min(440px, calc(100vw - 30px));
+    padding: 30px 24px 24px;
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.45);
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.95);
+    color: white;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: rgba(96, 165, 250, 0.9);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+}
+
+.close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    font-size: 22px;
+    box-shadow: none;
+}
+
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+    }
+
+    .tree-container {
+        padding: 30px 18px 50px;
+    }
+
+    .side-panel {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(148, 163, 184, 0.18);
+    }
+}
+
+@media (max-width: 640px) {
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px;
+    }
+
+    .tree-children {
+        gap: 18px;
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    .tree-children::before {
+        display: none;
+    }
+
+    .tree-node::before {
+        display: none;
+    }
+
+    .node-card {
+        min-width: 150px;
+    }
+
+    .document {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
