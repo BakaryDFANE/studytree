@@ -57,11 +57,11 @@ function creerNoeud(branche, profondeur = 0) {
 
     card.className = "node-card";
 
-    const sizeRatio = Math.max(0.7, 1 - profondeur * 0.12);
+    const sizeRatio = Math.max(0.35, 1 / Math.pow(2, profondeur));
     card.style.transform = `scale(${sizeRatio})`;
     card.style.transformOrigin = "center bottom";
-    card.style.minWidth = `${Math.max(120, 180 - profondeur * 14)}px`;
-    card.style.padding = `${Math.max(12, 18 - profondeur * 2)}px 12px`;
+    card.style.minWidth = `${Math.max(90, 180 / Math.pow(2, profondeur))}px`;
+    card.style.padding = `${Math.max(10, 18 / Math.pow(2, profondeur))}px 12px`;
 
 
     const icon = document.createElement("div");
@@ -81,7 +81,7 @@ function creerNoeud(branche, profondeur = 0) {
     name.textContent = branche.nom;
 
     if (profondeur > 0) {
-        name.style.fontSize = `${Math.max(11, 15 - profondeur * 0.8)}px`;
+        name.style.fontSize = `${Math.max(9, 15 / Math.pow(2, profondeur - 1))}px`;
     }
 
 
